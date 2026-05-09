@@ -1,5 +1,6 @@
 import { GlobeAltIcon, CodeBracketIcon, PaintBrushIcon } from "@heroicons/react/24/solid";
 import React from "react";
+import { motion } from 'framer-motion';
 
 export default function ServicesSection() {
   const cards = [
@@ -31,22 +32,32 @@ export default function ServicesSection() {
   ];
 
   return (
-    <div id="services" className="min-h-screen bg-neutral-900 flex flex-col items-center justify-center px-6 py-16">
+    <div id="services" className="min-h-screen flex flex-col items-center justify-center px-6 py-16 overflow-hidden">
 
   {/* Heading */}
-  <h2 className="text-3xl font-bold mb-10 text-center text-white">
-    My <span className="text-teal-400">Services</span>
-  </h2>
+  <motion.h2 
+    initial={{ opacity: 0, y: -20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+    className="text-3xl font-bold mb-10 text-center"
+  >
+    My <span className="accent">Services</span>
+  </motion.h2>
 
   <div className="grid md:grid-cols-3 gap-10 max-w-6xl">
     {cards.map((card, i) => (
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, delay: i * 0.2 }}
         key={i}
         className={`
-          bg-[#2f3a48] text-white rounded-xl p-8 shadow-lg 
+          site-panel text-site rounded-xl p-8 shadow-lg 
           flex flex-col items-center text-center border border-transparent
           transition-all duration-300
-          hover:bg-[#3b4656] hover:border-cyan-400 hover:shadow-xl hover:scale-[1.03]
+          hover:border-accent hover:shadow-xl hover:-translate-y-2
           ${card.border || ""}
         `}
       >
@@ -54,20 +65,19 @@ export default function ServicesSection() {
 
         <h3 className="text-xl font-semibold mt-4">{card.title}</h3>
 
-        <p className="text-gray-300 mt-4 leading-relaxed text-sm">
+        <p className="text-muted mt-4 leading-relaxed text-sm">
           {card.description}
         </p>
 
         <button
           className={`
             mt-6 px-8 py-2 rounded-full font-semibold transition-all duration-300
-            hover:scale-105 hover:shadow-lg
-            ${card.buttonColor}
+            hover:scale-105 hover:shadow-lg btn-outline hover:btn-accent
           `}
         >
           Hire Me
         </button>
-      </div>
+      </motion.div>
     ))}
   </div>
 </div>

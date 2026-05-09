@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { FaSun, FaMoon } from 'react-icons/fa';
 import './Navbar.css';
+import logo from '../../assets/logo.png';
+import profilePic from '../../assets/Hero.jpg';
+import { useScrollSpy } from '../../hooks/useScrollSpy';
 
-export default function Navbar() {
+export default function Navbar({ isDark, toggleTheme }) {
   const [isOpen, setIsOpen] = useState(false); // Mobile menu state
+  const activeSection = useScrollSpy(['home', 'about', 'projects', 'services', 'Myskills', 'contact'], 100);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -18,12 +23,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="relative sticky top-0 z-50 bg-[#192A46]">
+    <nav className="sticky top-0 z-50 site-panel bg-opacity-80 backdrop-blur-md border-b border-subtle transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           {/* Logo (left) */}
           <div className="flex-shrink-0 flex items-center px-8">
-            <img src="src/assets/logo.png" alt="logo" width={60} height={50} />
+            <img src={logo} alt="logo" width={60} height={50} />
           </div>
 
           {/* Mobile: Profile + Menu Button (right) */}
@@ -31,7 +36,7 @@ export default function Navbar() {
             {/* Profile Avatar */}
             <div className="w-10 h-10 rounded-full ">
               <img
-                src="src/assets/WhatsApp Image 2025-11-22 at 22.13.28_085d5587.jpg"
+                src={profilePic}
                 alt="Profile"
                 className="w-full h-full object-cover rounded-full bg-neutral-800"
               />
@@ -68,32 +73,82 @@ export default function Navbar() {
                 </svg>
               )}
             </button>
+            
+            {/* Theme Toggle (Mobile) */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-gray-400 hover:text-accent transition"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <FaSun size={20} /> : <FaMoon size={20} />}
+            </button>
           </div>
 
           {/* Desktop Links */}
           <div className="hidden sm:flex sm:ml-6 sm:items-center sm:justify-center flex-1">
             <div className="flex space-x-8">
-              <a href="#home" onClick={(e) => handleLinkClick(e, 'home')} className="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Home</a>
-              <a href="#about" onClick={(e) => handleLinkClick(e, 'about')} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">About Me</a>
-              <a href="#projects" onClick={(e) => handleLinkClick(e, 'projects')} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Projects</a>
-              <a href="#services" onClick={(e) => handleLinkClick(e, 'services')} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Services</a>
-              <a href="#Myskills" onClick={(e) => handleLinkClick(e, 'Myskills')} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">My Skills</a>
-              <a href="#contact" onClick={(e) => handleLinkClick(e, 'contact')} className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact Me</a>
+              {[
+                { id: 'home', label: 'Home' },
+                { id: 'about', label: 'About Me' },
+                { id: 'projects', label: 'Projects' },
+                { id: 'services', label: 'Services' },
+                { id: 'Myskills', label: 'My Skills' },
+                { id: 'contact', label: 'Contact Me' },
+              ].map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => handleLinkClick(e, item.id)}
+                  className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                    activeSection === item.id
+                      ? 'text-accent bg-accent/10'
+                      : 'text-muted hover:bg-white/5 hover:text-accent'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
+          </div>
+          
+          {/* Theme Toggle (Desktop) */}
+          <div className="hidden sm:flex items-center">
+            <button
+              onClick={toggleTheme}
+              className="p-2 text-muted hover:text-accent transition rounded-full hover:bg-white/5"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <FaSun size={20} /> : <FaMoon size={20} />}
+            </button>
           </div>
         </div>
       </div>
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="sm:hidden">
+        <div className="sm:hidden site-panel border-t border-subtle">
           <div className="space-y-1 px-2 pt-2 pb-3">
-            <a href="#home" onClick={(e) => handleLinkClick(e, 'home')} className="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white">Home</a>
-            <a href="#about" onClick={(e) => handleLinkClick(e, 'about')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">About Me</a>
-            <a href="#projects" onClick={(e) => handleLinkClick(e, 'projects')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Projects</a>
-            <a href="#services" onClick={(e) => handleLinkClick(e, 'services')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Services</a>
-            <a href="#Myskills" onClick={(e) => handleLinkClick(e, 'Myskills')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">My Skills</a>
-            <a href="#contact" onClick={(e) => handleLinkClick(e, 'contact')} className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contact Me</a>
+            {[
+              { id: 'home', label: 'Home' },
+              { id: 'about', label: 'About Me' },
+              { id: 'projects', label: 'Projects' },
+              { id: 'services', label: 'Services' },
+              { id: 'Myskills', label: 'My Skills' },
+              { id: 'contact', label: 'Contact Me' },
+            ].map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => handleLinkClick(e, item.id)}
+                className={`block rounded-md px-3 py-2 text-base font-medium ${
+                  activeSection === item.id
+                    ? 'text-accent bg-accent/10'
+                    : 'text-muted hover:bg-white/5 hover:text-accent'
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
       )}
