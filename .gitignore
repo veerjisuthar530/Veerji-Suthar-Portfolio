@@ -1,3 +1,17 @@
+node_modules/
+dist/
+.env
+.DS_Store
+.vite/
+.cache/
+coverage/
+npm-debug.log*
+.idea/
+.vscode/
+*.log
+/.history/
+local.env
+Thumbs.db
 # Logs
 logs
 *.log
@@ -11,6 +25,8 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.*
 
 # Editor directories and files
 .vscode/*

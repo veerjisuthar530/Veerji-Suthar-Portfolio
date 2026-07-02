@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { send } from '@emailjs/browser';
 import { FiPhoneCall, FiMail, FiMapPin } from "react-icons/fi";
 import { FaLinkedinIn, FaFacebookF } from "react-icons/fa";
 import { motion } from 'framer-motion';
 import logo from "../../assets/logo.png";
+
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,6 +21,7 @@ export default function Contact() {
   
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,6 +29,9 @@ export default function Contact() {
     // Clear error on change
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+    if (submitError) {
+      setSubmitError('');
     }
   };
 
@@ -38,18 +47,40 @@ export default function Contact() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-    } else {
-      // Submit logic here
+      return;
+    }
+
+    if (!serviceId || !templateId || !publicKey) {
+      setSubmitError('Contact service is not configured. Please check environment variables.');
+      return;
+    }
+
+    const templateParams = {
+      from_name: `${formData.firstName} ${formData.lastName}`.trim(),
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      phone: formData.phone,
+      subject: formData.subject,
+      email: formData.email,
+      message: formData.message,
+      reply_to: formData.email,
+      to_name: 'Veerji Suthar',
+      to_email: 'veeramdas530@gmail.com',
+    };
+
+    try {
+      await send(serviceId, templateId, templateParams, publicKey);
       setIsSubmitted(true);
+      setFormData({ firstName: '', lastName: '', phone: '', subject: '', email: '', message: '' });
       setTimeout(() => setIsSubmitted(false), 3000);
-      setFormData({
-        firstName: '', lastName: '', phone: '', subject: '', email: '', message: ''
-      });
+    } catch (error) {
+      console.error('Email send error:', error);
+      setSubmitError('Failed to send message. Please try again later.');
     }
   };
   return (
@@ -83,7 +114,7 @@ export default function Contact() {
 I aim to respond to all messages within 24 hours.  
 
 I enjoy collaborating with clients to bring their ideas to life and create meaningful digital experiences.  
-No project is too big or small — from personal portfolios to business websites, I’m here to help.  
+No project is too big or small from personal portfolios to business websites, I’m here to help.  
 Your ideas matter, and I take pride in turning them into a polished, functional, and visually appealing reality.  
 Let’s work together to build something amazing that makes an impact.
 
@@ -145,6 +176,11 @@ Let’s work together to build something amazing that makes an impact.
           {isSubmitted && (
             <div className="p-3 bg-green-500/20 border border-green-500 text-green-500 rounded-md text-center">
               Message sent successfully!
+            </div>
+          )}
+          {submitError && (
+            <div className="p-3 bg-red-500/10 border border-red-500 text-red-500 rounded-md text-center">
+              {submitError}
             </div>
           )}
           <div className="grid grid-cols-2 gap-4">

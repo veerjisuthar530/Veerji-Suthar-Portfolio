@@ -38,34 +38,33 @@ export default function AboutMe() {
         </h2>
 
         <h2 className="text-3xl font-bold mb-6">
-          Curious about me? Here you have it:
+          Curious about me? Here you have it.
         </h2>
 
-        <div className="space-y-4 text-muted leading-relaxed font-[Inter] justify-start">
+        <div className="space-y-6 text-muted leading-relaxed font-[Inter] justify-start text-justify">
           <p>
-            I'm a passionate{" "}
-            <span className="font-semibold text-site">
-              designer and full-stack developer
-            </span>
-            specializing in modern web technologies like React.js and Node.js. I
-            love bringing ideas to life by blending clean design with solid,
-            efficient code.
+            I'm a passionate <strong>Software Engineering student</strong> and <strong>Full-Stack Developer</strong> dedicated to building modern, scalable, and user-friendly web applications. I enjoy transforming ideas into real-world digital solutions by combining clean design, efficient code, and strong problem-solving skills. My expertise includes <strong>React.js, Next.js, Node.js, ASP.NET Core, JavaScript, HTML5, CSS3, Tailwind CSS, C#, and SQL Server</strong>.
           </p>
 
           <p>
-            My journey in web development began in 2015, and ever since, I’ve
-            been growing, experimenting, and pushing myself to learn new tools
-            and technologies. With every project, I aim to build experiences
-            that feel intuitive, fast, and visually engaging.
+            I completed a 2-month React.js internship at <strong>Zero Vertical Lab</strong>, where I contributed to real-world applications and strengthened my frontend development experience.
           </p>
 
           <p>
-            I enjoy working on products from start to finish — from
-            brainstorming and planning, all the way to development, refinement,
-            and deployment. Crafting meaningful digital experiences is what
-            keeps me excited.
+            As a Software Engineering student, I've developed a solid understanding of <strong>software design principles, object-oriented programming, data structures, algorithms, databases, software architecture, and the Software Development Life Cycle (SDLC)</strong>. I believe that great software is built through thoughtful planning, clean architecture, collaboration, and continuous improvement.
           </p>
-          
+
+          <p>
+            I enjoy working across the entire development lifecycle—from gathering requirements and designing intuitive user interfaces to developing secure backend services, integrating databases, testing applications, and deploying reliable solutions. Every project is an opportunity to learn, innovate, and create meaningful experiences that solve real-world problems.
+          </p>
+
+          <p>
+            I'm constantly exploring new technologies, improving my technical skills, and following industry best practices to build applications that are fast, responsive, secure, and maintainable. My goal is to grow as a software engineer while contributing to impactful projects and collaborating with teams that value innovation, quality, and continuous learning.
+          </p>
+
+          <p className="font-semibold">
+            "Code with purpose, build with passion, and never stop learning."
+          </p>
         </div>
       </motion.div>
     </section>

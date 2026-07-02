@@ -54,11 +54,17 @@ export default function Hero() {
           <div className="mt-2 text-xl font-medium h-[30px]">
             <TypeAnimation
               sequence={[
-                'Senior Frontend Developer',
+                'Full-Stack Developer',
                 1000,
-                'Software Engineering Student',
+                'React.js Developer',
                 1000,
-                'React.js Specialist',
+                'Next.js Developer',
+                1000,
+                'ASP.NET Core Developer',
+                1000,
+                'Problem Solver',
+                1000,
+                'Software Engineer',
                 1000
               ]}
               wrapper="span"
@@ -68,14 +74,8 @@ export default function Hero() {
             />
           </div>
 
-          <p className="mt-6 text-muted max-w-2xl text-left text-sm md:text-base">
-            I'm Veerji Suthar, Frontend Developer with a strong foundation in
-            HTML, CSS, JavaScript, React.js, and ASP.NET Core. Skilled in
-            building user-friendly and responsive web applications and
-            developing dynamic UI components. Completed a 2-month React.js
-            internship and currently pursuing Software Engineering at SMIU,
-            eager to contribute to impactful web development projects in
-            collaborative environments.
+          <p className="mt-6 text-muted max-w-2xl text-left text-sm md:text-base text-justify">
+            I'm a Full-Stack Developer who loves turning ideas into powerful web applications. From crafting intuitive user interfaces with React.js and Next.js to developing secure backend services using Node.js and ASP.NET Core, I enjoy building complete solutions that are both functional and visually appealing. I'm passionate about continuous learning, solving complex problems, and creating digital experiences that make a difference.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:gap-4 gap-3 justify-center md:justify-start">

@@ -5,27 +5,26 @@ import { motion } from 'framer-motion';
 export default function ServicesSection() {
   const cards = [
     {
-      title: "Web Design",
+      title: "Frontend Development",
       icon: <GlobeAltIcon className="w-14 h-14 text-cyan-400" />,
       description:
-        "I am professional Web Developer. I have designed more than 50 web template for my client. You can hire me for design your personal, business or other website template. You can trust me. I complied your work with your full satisfaction",
+        "Build responsive and accessible user interfaces using React.js, Next.js, HTML5, CSS3, and Tailwind CSS. I focus on performance, clean design, and polished interactions for modern web experiences.",
       buttonColor:
         "bg-white text-black hover:bg-cyan-400 hover:text-black", // BUTTON HOVER COLOR
     },
     {
-      title: "Web Development",
+      title: "Backend & APIs",
       icon: <CodeBracketIcon className="w-14 h-14 text-cyan-400" />,
       description:
-        "I am professional Web Developer. I have designed more than 50 web template for my client. You can hire me for design your personal, business or other website template. You can trust me. I complied your work with your full satisfaction",
+        "Develop secure backend services and REST APIs with Node.js, ASP.NET Core, C#, and SQL Server. I deliver scalable solutions that integrate data, authentication, and business logic reliably.",
       buttonColor:
         "bg-white text-black hover:bg-cyan-400 hover:text-black", // BUTTON HOVER COLOR
-      
     },
     {
-      title: "Graphic Design",
+      title: "Full-Stack Solutions",
       icon: <PaintBrushIcon className="w-14 h-14 text-cyan-400" />,
       description:
-        "I am professional Web designer. I have designed more than 50 web template for my client. You can hire me for design your personal, business or other website template. You can trust me. I complied your work with your full satisfaction",
+        "Combine frontend, backend, and database expertise to turn ideas into complete web applications. I help with project planning, system architecture, development, testing, and deployment.",
       buttonColor:
         "bg-white text-black hover:bg-cyan-400 hover:text-black", // BUTTON HOVER COLOR
     },

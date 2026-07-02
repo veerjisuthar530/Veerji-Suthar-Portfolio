@@ -11,6 +11,28 @@ Currently, two official plugins are available:
 
 The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
+## Contact form email setup
+
+This project uses EmailJS to send contact form submissions directly from the browser.
+
+Create a `.env` file in the project root with your EmailJS credentials:
+
+```env
+VITE_EMAILJS_SERVICE_ID=your_service_id
+VITE_EMAILJS_TEMPLATE_ID=your_template_id
+VITE_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+Then update your EmailJS template to use the following fields:
+- `first_name`
+- `last_name`
+- `phone`
+- `subject`
+- `email`
+- `message`
+
+The contact form will display success or error feedback after submission.
+
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
